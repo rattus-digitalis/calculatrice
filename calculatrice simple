@@ -1,0 +1,150 @@
+#include <stdio.h>
+#include <math.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
+
+//////////////////////////////////////////////
+
+int check_str(char *str) { // verif decimale
+    size_t i = 0;
+
+    if (str[0] == '-') { // positif ou negatif
+        i = 1;
+    }
+
+    while (str[i] != '\0') {
+        if (!isdigit(str[i])) { // verif si digital
+            return 0; 
+        i++;
+    }
+    return 1; 
+} }
+///////////////////////////////////////////////////////////////
+long int carre(int x);
+long int addition(int x, int y);
+long int soustraction(int x, int y);   // apelle des fonctions
+long int multiplication(int x, int y);
+double racine(int x);
+void division(int x, int y);
+void fin(void);
+///////////////////////////////////////////////////////////////
+
+int main(void) {
+
+    printf("Bonjour, voici le premier programme en C que je fais !\n");
+    ///////////////////////////////////////////////////////////////   
+    char recommencer;
+    int x, y;
+    char string[100];
+    do { // fonction retour 
+
+        ///////////////////////////////////////////////////////////////
+           while (1) {
+            printf("Choisir la valeur de X: ");
+            if (scanf("%s", string) == 1 && check_str(string) == 1) {  // choix X & verif nombre entier
+                x = atoi(string); 
+                break;
+            } else {
+                printf("Oups, il faut choisir un nombre entier\n");
+                while (getchar() != '\n');  // Vider le buffer !!!
+            }
+        }
+
+        printf("\n- Ok, tu as choisi %d\n", x);
+        printf(" \n");
+
+        ///////////////////////////////////////////////////////////////
+        while (1) {
+            printf("Choisir la valeur de Y: ");
+            if (scanf("%s", string) == 1 && check_str(string) == 1) {
+                y = atoi(string);
+                break;
+            } else {
+                printf("Oups, il faut choisir un nombre entier\n");
+                while (getchar() != '\n');  // Vider le buffer
+            }
+        }
+
+        printf("\n- Ok, tu as choisi %d\n", y);
+        printf(" \n");
+        ///////////////////////////////////////////////////////////////
+        printf("\n****_ Place aux calculs _****\n");
+        printf(" \n");
+        printf(" \n");
+
+        ///////////////////////////////////////////////////////////////
+        carre(x);
+        //--------
+        carre(y);
+
+        racine(x);
+        //----------
+        racine(y);
+
+        multiplication(x, y);
+
+        division(x, y);
+
+        addition(x, y);
+
+        soustraction(x, y);
+
+        printf(" \n");
+
+        fin();
+
+        ///////////////////////////////////////////////////////////////
+        printf("\n- Voulez-vous recommencer? (y/n): ");
+            scanf(" %c", &recommencer);  // Corriger ici
+    } while (recommencer == 'y' || recommencer == 'Y');
+
+
+    return 0;
+}
+///////////////////////////////////////////////////////////////
+long int carre(int x) {
+    printf("- Le carré de %d est %ld\n", x,  ((long int)x * (long int)x));
+    return (long int)x * (long int)x;
+}
+///////////////////////////////////////////////////////////////
+double racine(int x) {
+    if (x > 0) {
+        printf("- La racine de %d est %.2f\n", x, sqrt((double)x));
+        return sqrt((double)x);
+    } else {
+        printf("! Erreur : racine d'un nombre négatif !\n");
+        return -1; 
+    }
+}
+
+
+
+///////////////////////////////////////////////////////////////
+long int multiplication(int x, int y) {
+    printf("- La multiplication de %d et %d est %ld\n", x, y, ((long int)x * (long int)y));
+    return (long int)x * (long int)y;
+}
+///////////////////////////////////////////////////////////////
+void division(int x, int y) {
+    if (y != 0) {
+        printf("- La division de %d et %d est %.2f\n", x, y, ((float)x / (float)y));
+    } else {
+        printf("! Erreur: division par 0 !\n");
+    }
+}
+///////////////////////////////////////////////////////////////
+long int addition(int x, int y) {
+    printf("- L'addition de %d et de %d est %ld\n", x, y, ((long int)x + (long int)y));
+    return (long int)x + (long int)y;
+}
+///////////////////////////////////////////////////////////////
+long int soustraction(int x, int y) {
+    printf("- La soustraction de %d et %d est %ld\n", x, y, ((long int)x - (long int)y));
+    return (long int)x - (long int)y;
+}
+///////////////////////////////////////////////////////////////
+void fin(void) {
+    printf("Fin du programme ;)\n");
+}
+///////////////////////////////////////////////////////////////
